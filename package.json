@@ -20,7 +20,7 @@
     "dev": "run-p dev:*",
     "dev:main": "microbundle watch",
     "dev:style": "sass scss/main.scss css/main.css --watch --no-source-map",
-    "build": "microbundle && npm run build:style",
+    "build": "npm run build:style && microbundle",
     "build:style": "sass scss/main.scss css/main.css --style=compressed --no-source-map",
     "test": "jest --env=jsdom",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",

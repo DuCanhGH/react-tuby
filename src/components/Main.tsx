@@ -4,7 +4,6 @@ import React, {
   useEffect,
   useRef,
   useState,
-  isValidElement,
 } from "react";
 import { formatVideoTime, isMobile } from "../shared/utils";
 
@@ -439,7 +438,7 @@ const Player: FC<PlayerProps> = ({
           hoverEnabled ? "tuby-controls-hovered" : ""
         }`}
       >
-        {children && isValidElement(children) ? (
+        {children ? (
           children(playerRef, videoProps)
         ) : (
           <video ref={playerRef} {...videoProps} />
