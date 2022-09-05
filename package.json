@@ -1,9 +1,15 @@
 {
-  "version": "0.3.0",
+  "version": "0.3.1",
   "license": "MIT",
   "exports": {
-    "require": "./dist/index.js",
-    "default": "./dist/index.modern.mjs"
+    ".": {
+      "require": "./dist/index.js",
+      "default": "./dist/index.modern.mjs"
+    },
+    "./css/main.css": {
+      "import": "./css/main.css",
+      "require": "./css/main.css"
+    }
   },
   "main": "./dist/index.js",
   "module": "./dist/index.module.js",
