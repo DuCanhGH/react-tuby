@@ -4,9 +4,8 @@
 
 # React Tuby
 
-[![Build Size](https://img.shields.io/bundlephobia/minzip/react-tuby?label=Bundle%20size&style=flat&color=success)](https://bundlephobia.com/result?p=react-tuby)
-[![Version](https://img.shields.io/npm/v/react-tuby?style=flat&color=success)](https://www.npmjs.com/package/react-tuby)
-[![Downloads](https://img.shields.io/npm/dt/react-tuby.svg?style=flat&color=success)](https://www.npmjs.com/package/react-tuby)
+[![Build Size](https://img.shields.io/bundlephobia/minzip/@ducanh2912/react-tuby?label=Bundle%20size&style=flat&color=success)](https://bundlephobia.com/result?p=@ducanh2912/react-tuby)
+[![Version](https://img.shields.io/npm/v/@ducanh2912/react-tuby?style=flat&color=success)](https://www.npmjs.com/package/@ducanh2912/react-tuby)
 
 A React video player library with YouTube-like UI
 
