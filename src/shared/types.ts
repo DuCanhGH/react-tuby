@@ -1,4 +1,4 @@
-import { HTMLProps, ReactElement, RefObject } from "react";
+import { HTMLProps, RefObject, ReactElement } from "react";
 
 interface Internationalization {
   tooltipsPlay?: string;
@@ -48,8 +48,10 @@ export interface PlayerProps {
       };
   playerRef?: RefObject<HTMLVideoElement>;
   children?: (
-    ref: any,
-    props: HTMLProps<HTMLVideoElement> & { src: string }
+    ref: RefObject<HTMLVideoElement>,
+    props: HTMLProps<HTMLVideoElement> & {
+      src: string;
+    }
   ) => ReactElement;
 }
 

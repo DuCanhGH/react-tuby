@@ -2,29 +2,29 @@ import React, {
   Component,
   HTMLProps,
   ReactElement,
-  Ref,
   createRef,
+  RefObject,
 } from "react";
 
 import { PlayerProps } from "../shared/types";
 
-class ErrorBoundary extends Component<
-  PlayerProps & {
-    renderer?: (
-      ref: any,
-      props: HTMLProps<HTMLVideoElement> & { src: string }
-    ) => ReactElement;
-    children?: any;
-  },
-  { hasError: boolean }
-> {
-  playerRef: Ref<HTMLElement>;
-  videoProps: HTMLProps<HTMLVideoElement> & { src: string };
+interface Props extends PlayerProps {
+  renderer?: (
+    ref: RefObject<HTMLVideoElement>,
+    props: HTMLProps<HTMLVideoElement> & { src: string }
+  ) => ReactElement;
+  children?: any;
+}
 
-  constructor(props: PlayerProps) {
+class ErrorBoundary extends Component<Props, { hasError: boolean }> {
+  playerRef: RefObject<HTMLVideoElement>;
+  videoProps: HTMLProps<HTMLVideoElement> & { src: string };
+  constructor(
+    props: Props
+  ) {
     super(props);
     this.state = { hasError: false };
-    this.playerRef = createRef();
+    this.playerRef = createRef<HTMLVideoElement>();
 
     this.videoProps = {
       crossOrigin: "anonymous",
@@ -62,12 +62,12 @@ class ErrorBoundary extends Component<
           {this.props.renderer ? (
             this.props.renderer(this.playerRef, this.videoProps)
           ) : (
-            <video ref={this.playerRef as any} {...this.videoProps} />
+            <video ref={this.playerRef} {...this.videoProps} />
           )}
         </div>
       );
     }
-    return this.props.children;
+    return <>{this.props.children}</>;
   }
 }
 

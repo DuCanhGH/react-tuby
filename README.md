@@ -19,13 +19,13 @@ A React video player library with YouTube-like UI
 - 📹 HTML Video, M3U8 support
 - 🎛 Allow multiple qualities
 - 📱 Fully responsive
-- 🖥 FullScreen cross browser support, even safari on iphone
+- 🖥 Full screen cross browser support, even Safari on iPhone
 - 📖 Subtitles support
 - ⏰ Speed control
 - ⌨️ Keyboard shortcuts
-- ⚙️ Support server side rendering (nextjs)
+- ⚙️ Support server side rendering (Next.js)
 - 🛠 No extra dependencies
-- ✅ Auto fallback to default video if render fails on old browsers
+- ✅ Automatically fallback to default `<video />` if rendering fails on older browsers
 
 ## Installation
 
@@ -33,6 +33,8 @@ A React video player library with YouTube-like UI
 npm i react-tuby
 # or
 # yarn add react-tuby
+# or
+# pnpm add react-tuby
 ```
 
 ## Import
@@ -80,9 +82,9 @@ import "react-tuby/css/main.css";
 
 | prop                     | type                                                                                                                           | description                                                                                            |
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| **src**                  | { quality: number \| string; url: string; }[] \| string;                                                                       | One url of video or array of qualities                                                                 |
-| **subtitles**            | { lang: string; language: string; url: string; }[]                                                                             | Array of subtitles, the first one will be default. Subtitle **must** be in .vtt format.                |
-| **dimensions**           | number \| { width: number \| string; height: number \| string }                                                                | Number: aspect ratio (height/width). Default: 56.25% (9/16) Width, height: set custom width and height |
+| **src**                  | { quality: number \| string; url: string; }[] \| string;                                                                       | One video url or array of video urls and qualities                                                                 |
+| **subtitles**            | { lang: string; language: string; url: string; }[]                                                                             | Array of subtitles, the first one will be the default. Subtitle **must** be in .vtt format.                |
+| **dimensions**           | number \| { width: number \| string; height: number \| string }                                                                | Number: aspect ratio (height/width). Default is 56.25% (9/16) Width, height: set custom width and height |
 | **primaryColor**         | string                                                                                                                         | Customize the primary color. Default: #ff0000                                                          |
 | **poster**               | string                                                                                                                         | The url of poster image                                                                                |
 | **seekDuration**         | number                                                                                                                         | Seek duration when pressing left/right key. Default: 10                                                |
@@ -94,13 +96,13 @@ import "react-tuby/css/main.css";
 
 ## Examples
 
-### Single src
+### One src only
 
 ```jsx
 <Player src="/your-video.mp4" />
 ```
 
-### Full width, height
+### Custom width, height
 
 ```jsx
 <Player src="/your-video.mp4" dimensions={{ width: "100%", height: "100%" }} />
@@ -209,4 +211,4 @@ useEffect(() => {
 
 ## Issues
 
-If you have some bug or have any feature request, feel free to submit an issue on the [github repo](https://github.com/napthedev/react-tuby.git).
+If you encounter some bugs or have a feature request, feel free to submit an issue on the [github repo](https://github.com/DuCanhGH/react-tuby.git).

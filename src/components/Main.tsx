@@ -1,4 +1,11 @@
-import React, { FC, HTMLProps, useEffect, useRef, useState } from "react";
+import React, {
+  FC,
+  HTMLProps,
+  useEffect,
+  useRef,
+  useState,
+  isValidElement,
+} from "react";
 import { formatVideoTime, isMobile } from "../shared/utils";
 
 import CircularProgress from "./Icons/CircularProgress";
@@ -432,7 +439,7 @@ const Player: FC<PlayerProps> = ({
           hoverEnabled ? "tuby-controls-hovered" : ""
         }`}
       >
-        {children ? (
+        {children && isValidElement(children) ? (
           children(playerRef, videoProps)
         ) : (
           <video ref={playerRef} {...videoProps} />
