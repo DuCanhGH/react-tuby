@@ -1,8 +1,14 @@
 {
   "version": "0.2.0",
   "license": "MIT",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "exports": {
+    "require": "./dist/index.js",
+    "default": "./dist/index.modern.mjs"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.module.js",
+  "unpkg": "./dist/index.umd.js",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist",
     "css"
@@ -34,11 +40,14 @@
   },
   "name": "@ducanh2912/react-tuby",
   "description": "A React video player library with YouTube-like UI",
-  "author": "napthedev",
-  "module": "dist/react-tuby.esm.js",
+  "author": "napthedev, DuCanhGH",
+  "bugs": {
+    "url": "https://github.com/DuCanhGH/react-hls/issues"
+  },
+  "homepage": "https://github.com/DuCanhGH/react-hls#README",
   "repository": {
     "type": "git",
-    "url": "https://github.com/napthedev/react-tuby.git"
+    "url": "git+https://github.com/DuCanhGH/react-hls.git"
   },
   "keywords": [
     "react",
@@ -49,11 +58,19 @@
   ],
   "size-limit": [
     {
-      "path": "dist/react-tuby.cjs.production.min.js",
+      "path": "dist/index.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/react-tuby.esm.js",
+      "path": "dist/index.modern.mjs",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/index.module.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/index.umd.js",
       "limit": "10 KB"
     }
   ],
