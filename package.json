@@ -3,12 +3,13 @@
   "license": "MIT",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "require": "./dist/index.js",
       "default": "./dist/index.modern.mjs"
     },
     "./css/main.css": {
-      "import": "./css/main.css",
-      "require": "./css/main.css"
+      "require": "./css/main.css",
+      "import": "./css/main.css"
     }
   },
   "main": "./dist/index.js",
