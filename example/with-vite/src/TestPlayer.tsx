@@ -1,6 +1,5 @@
-import React from "react";
-import { render } from "@testing-library/react";
-import { Player } from "../src";
+import { Player } from "../../../src";
+import "../../../css/main.css";
 
 const TestPlayer = () => {
   return (
@@ -36,8 +35,4 @@ const TestPlayer = () => {
   );
 };
 
-describe("it", () => {
-  it("renders without crashing", () => {
-    render(<TestPlayer />);
-  });
-});
+export default TestPlayer;

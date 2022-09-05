@@ -20,14 +20,14 @@ const SettingsModal: FC<SettingsProps> = ({
       onClick={() => setSettingsActive(false)}
       className={`tuby-backdrop ${settingsActive ? "tuby-show" : ""}`}
     >
-      <div onClick={e => e.stopPropagation()} className="tuby-modal">
+      <div onClick={(e) => e.stopPropagation()} className="tuby-modal">
         <h1>{internationalization?.tooltipsSettings || "Settings"}</h1>
 
         <div>
           <p>{internationalization?.settingsPlaybackSpeed || "Speed"}</p>
           <select
             value={playbackSpeed * 4 - 1}
-            onChange={e => setPlaybackSpeed((+e.target.value + 1) / 4)}
+            onChange={(e) => setPlaybackSpeed((+e.target.value + 1) / 4)}
           >
             {new Array(8)
               .fill("")
@@ -50,7 +50,7 @@ const SettingsModal: FC<SettingsProps> = ({
             <p>{internationalization?.settingsSubtitles || "Subtitles"}</p>
             <select
               value={subtitleIndex}
-              onChange={e => setSubtitleIndex(+e.target.value)}
+              onChange={(e) => setSubtitleIndex(+e.target.value)}
             >
               <option value={-1}>
                 {internationalization?.settingsSubtitlesOff || "Off"}
@@ -74,7 +74,10 @@ const SettingsModal: FC<SettingsProps> = ({
         {typeof src === "object" && (
           <div>
             <p>{internationalization?.settingsQuality || "Quality"}</p>
-            <select value={quality} onChange={e => setQuality(+e.target.value)}>
+            <select
+              value={quality}
+              onChange={(e) => setQuality(+e.target.value)}
+            >
               {src.map((source, index) => (
                 <option
                   key={source.quality}

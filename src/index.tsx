@@ -5,7 +5,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import Main from "./components/Main";
 import { PlayerProps } from "./shared/types";
 
-export const Player: FC<PlayerProps> = props => {
+export const Player: FC<PlayerProps> = (props) => {
   const { dimensions, primaryColor } = props;
 
   return (
@@ -36,4 +36,4 @@ export const Player: FC<PlayerProps> = props => {
   );
 };
 
-export { PlayerProps } from "./shared/types";
+export type { PlayerProps } from "./shared/types";

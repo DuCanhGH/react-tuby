@@ -49,8 +49,7 @@ import "react-tuby/css/main.css";
   src={[
     {
       quality: "Full HD",
-      url:
-        "https://cdn.glitch.me/cbf2cfb4-aa52-4a1f-a73c-461eef3d38e8/1080.mp4",
+      url: "https://cdn.glitch.me/cbf2cfb4-aa52-4a1f-a73c-461eef3d38e8/1080.mp4",
     },
     {
       quality: 720,
@@ -65,14 +64,12 @@ import "react-tuby/css/main.css";
     {
       lang: "en",
       language: "English",
-      url:
-        "https://cdn.jsdelivr.net/gh/naptestdev/video-examples@master/en.vtt",
+      url: "https://cdn.jsdelivr.net/gh/naptestdev/video-examples@master/en.vtt",
     },
     {
       lang: "fr",
       language: "French",
-      url:
-        "https://cdn.jsdelivr.net/gh/naptestdev/video-examples@master/fr.vtt",
+      url: "https://cdn.jsdelivr.net/gh/naptestdev/video-examples@master/fr.vtt",
     },
   ]}
   poster="https://cdn.jsdelivr.net/gh/naptestdev/video-examples@master/poster.png"
@@ -127,7 +124,7 @@ This library uses **render props** to allow user to set custom render component
     <video
       ref={ref}
       {...others}
-      onPause={e => {
+      onPause={(e) => {
         // The library original event
         onPause && onPause(e);
 

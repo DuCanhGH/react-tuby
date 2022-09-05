@@ -171,11 +171,11 @@ const Player: FC<PlayerProps> = ({
     if (settingsActive) {
       setSettingsActive(false);
     } else {
-      setPaused(prev => !prev);
+      setPaused((prev) => !prev);
     }
 
     if (e.detail === 2 && !isMobile()) {
-      setOnFullScreen(prev => !prev);
+      setOnFullScreen((prev) => !prev);
     }
   };
 
@@ -474,17 +474,17 @@ const Player: FC<PlayerProps> = ({
         >
           <div
             ref={seekRef}
-            onMouseDown={e => {
+            onMouseDown={(e) => {
               mouseDownRef.current = true;
               handleSeeking(e.clientX);
               listenMouseMoveSeeking();
             }}
-            onTouchStart={e => {
+            onTouchStart={(e) => {
               mouseDownRef.current = true;
               handleSeeking(e.touches?.[0]?.pageX);
               listenMouseMoveSeeking();
             }}
-            onMouseMove={e => handleSeekPreview(e.clientX)}
+            onMouseMove={(e) => handleSeekPreview(e.clientX)}
             onMouseLeave={() => setSeekPreview(null)}
             className="tuby-seek"
           >
@@ -537,7 +537,7 @@ const Player: FC<PlayerProps> = ({
                     ? internationalization?.tooltipsPlay || "Play (k)"
                     : internationalization?.tooltipsPause || "Pause (k)"
                 }
-                onClickCapture={() => setPaused(prev => !prev)}
+                onClickCapture={() => setPaused((prev) => !prev)}
               >
                 {paused ? (
                   <Play className="tuby-icon-sm" />
@@ -572,7 +572,7 @@ const Player: FC<PlayerProps> = ({
                     min={0}
                     max={100}
                     value={isMuted ? 0 : volume}
-                    onChange={e => {
+                    onChange={(e) => {
                       setVolume(+e.target.value);
                       setIsMuted(+e.target.value === 0);
                     }}
@@ -611,11 +611,11 @@ const Player: FC<PlayerProps> = ({
                 </button>
               )}
               <ClickAwayListener onClickAway={() => setSettingsActive(false)}>
-                {ref => (
+                {(ref) => (
                   <div ref={ref} style={{ position: "relative" }}>
                     <button
                       className="tuby-center-container"
-                      onClickCapture={() => setSettingsActive(prev => !prev)}
+                      onClickCapture={() => setSettingsActive((prev) => !prev)}
                       {...(!settingsActive
                         ? {
                             "data-tuby-tooltips":
@@ -689,7 +689,7 @@ const Player: FC<PlayerProps> = ({
                     : internationalization?.tooltipsFullscreen ||
                       "Full screen (f)"
                 }`}
-                onClickCapture={() => setOnFullScreen(prev => !prev)}
+                onClickCapture={() => setOnFullScreen((prev) => !prev)}
               >
                 {onFullScreen ? (
                   <ExitFullScreen className="tuby-icon-sm" />
