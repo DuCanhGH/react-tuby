@@ -1,7 +1,6 @@
 import React, {
   Component,
   HTMLProps,
-  ReactElement,
   createRef,
   RefObject,
   ReactNode
@@ -24,7 +23,6 @@ class ErrorBoundary extends Component<Props, { hasError: boolean }> {
     super(props);
     this.state = { hasError: false };
     this.playerRef = createRef<HTMLVideoElement>();
-
     this.videoProps = {
       crossOrigin: "anonymous",
       playsInline: true,
