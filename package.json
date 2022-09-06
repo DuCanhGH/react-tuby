@@ -49,12 +49,12 @@
   "description": "A React video player library with YouTube-like UI",
   "author": "napthedev, DuCanhGH",
   "bugs": {
-    "url": "https://github.com/DuCanhGH/react-hls/issues"
+    "url": "https://github.com/DuCanhGH/react-tuby/issues"
   },
-  "homepage": "https://github.com/DuCanhGH/react-hls#README",
+  "homepage": "https://github.com/DuCanhGH/react-tuby#README",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DuCanhGH/react-hls.git"
+    "url": "git+https://github.com/DuCanhGH/react-tuby.git"
   },
   "keywords": [
     "react",
