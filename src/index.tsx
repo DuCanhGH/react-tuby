@@ -6,8 +6,7 @@ import Main from "./components/Main";
 import { PlayerProps } from "./shared/types";
 
 export const Player: FC<PlayerProps> = (props) => {
-  const { dimensions, primaryColor } = props;
-
+  const { dimensions, primaryColor, children, subtitles, src } = props;
   return (
     <div
       className="tuby"
@@ -28,7 +27,7 @@ export const Player: FC<PlayerProps> = (props) => {
       }}
     >
       <ClientRender>
-        <ErrorBoundary renderer={props.children} {...props}>
+        <ErrorBoundary renderer={children} src={src} subtitles={subtitles}>
           <Main {...props} />
         </ErrorBoundary>
       </ClientRender>

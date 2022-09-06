@@ -1,10 +1,4 @@
-import React, {
-  FC,
-  HTMLProps,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { FC, HTMLProps, useEffect, useRef, useState } from "react";
 import { formatVideoTime, isMobile } from "../shared/utils";
 
 import CircularProgress from "./Icons/CircularProgress";
@@ -76,7 +70,7 @@ const Player: FC<PlayerProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const seekRef = useRef<HTMLDivElement>(null);
   const mouseDownRef = useRef<Boolean>(false);
-  const timeoutRef = useRef<any>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | number | null>(null);
   const fullscreenToggleButton = useRef<HTMLButtonElement>(null);
   const pauseButton = useRef<HTMLButtonElement>(null);
   const volumeButtonRef = useRef<HTMLButtonElement>(null);
@@ -88,9 +82,7 @@ const Player: FC<PlayerProps> = ({
 
   const updateHoverState = () => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
-
     setHoverEnabled(true);
-
     timeoutRef.current = setTimeout(() => {
       setHoverEnabled(false);
     }, 2000);
@@ -173,7 +165,9 @@ const Player: FC<PlayerProps> = ({
     });
   };
 
-  const handleScreenClicked = (e: any) => {
+  const handleScreenClicked = (
+    e: React.MouseEvent<HTMLVideoElement> | React.MouseEvent<HTMLDivElement>
+  ) => {
     if (settingsActive) {
       setSettingsActive(false);
     } else {
@@ -193,7 +187,9 @@ const Player: FC<PlayerProps> = ({
     } else {
       playerRef.current?.play();
     }
-    (document?.activeElement as any)?.blur();
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
   }, [paused]);
 
   useEffect(() => {
@@ -252,35 +248,37 @@ const Player: FC<PlayerProps> = ({
       if (onFullScreen) {
         if (isMobile()) {
           let elem = playerRef.current as any;
-          const requestFullScreen =
-            elem.requestFullscreen ||
-            elem.webkitRequestFullscreen ||
-            elem.webkitRequestFullScreen ||
-            elem.webkitEnterFullscreen ||
-            elem.mozRequestFullScreen ||
-            elem.msRequestFullscreen;
-          requestFullScreen?.call(elem).catch((err: any) => console.log(err));
+          if (elem) {
+            const requestFullScreen =
+              elem.requestFullscreen ||
+              elem.webkitRequestFullscreen ||
+              elem.webkitRequestFullScreen ||
+              elem.webkitEnterFullscreen ||
+              elem.mozRequestFullScreen ||
+              elem.msRequestFullscreen;
+            requestFullScreen?.call(elem).catch((err: any) => console.log(err));
+          }
         } else {
           let elem = containerRef.current as any;
-          const requestFullScreen =
-            elem.requestFullscreen ||
-            elem.webkitRequestFullscreen ||
-            elem.webkitRequestFullScreen ||
-            elem.webkitEnterFullscreen ||
-            elem.mozRequestFullScreen ||
-            elem.msRequestFullscreen;
-          requestFullScreen?.call(elem).catch((err: any) => console.log(err));
+          if (elem) {
+            const requestFullScreen =
+              elem.requestFullscreen ||
+              elem.webkitRequestFullscreen ||
+              elem.webkitRequestFullScreen ||
+              elem.webkitEnterFullscreen ||
+              elem.mozRequestFullScreen ||
+              elem.msRequestFullscreen;
+            requestFullScreen?.call(elem).catch((err: any) => console.log(err));
+          }
         }
       } else {
         let doc = document as any;
-
         const exitFullScreen =
           doc.exitFullscreen ||
           doc.webkitExitFullscreen ||
           doc.webkitCancelFullScreen ||
           doc.mozCancelFullScreen ||
           doc.msExitFullscreen;
-
         exitFullScreen?.call(document).catch((err: any) => console.log(err));
       }
     } catch (error) {}
@@ -320,8 +318,11 @@ const Player: FC<PlayerProps> = ({
     const keyHandler = (e: KeyboardEvent) => {
       if (!keyboardShortcut) return;
 
-      if (containerRef.current?.contains(document.activeElement))
-        (document.activeElement as any)?.blur();
+      if (containerRef.current?.contains(document.activeElement)) {
+        if (document.activeElement instanceof HTMLElement) {
+          document.activeElement.blur();
+        }
+      }
       // Pause
       if (
         (keyboardShortcut === true || keyboardShortcut.pause) &&
@@ -671,18 +672,16 @@ const Player: FC<PlayerProps> = ({
                 )}
               </ClickAwayListener>
 
-              {pictureInPicture && (document as any)?.pictureInPictureEnabled && (
+              {pictureInPicture && document?.pictureInPictureEnabled && (
                 <button
                   className="tuby-center-container"
                   ref={fullscreenToggleButton}
                   data-tuby-tooltips="Picture in Picture"
                   onClickCapture={() => {
                     try {
-                      let doc = document as any;
-                      if (doc?.pictureInPictureElement)
-                        doc?.exitPictureInPicture();
-                      else
-                        (playerRef.current as any)?.requestPictureInPicture();
+                      if (document?.pictureInPictureElement)
+                        document?.exitPictureInPicture();
+                      else playerRef.current?.requestPictureInPicture();
                     } catch (error) {}
                   }}
                   aria-label="Enable Picture in Picture"

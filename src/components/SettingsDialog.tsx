@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC, useEffect, useRef, useState, RefObject } from "react";
 
 import Check from "./Icons/Check";
 import ChevronLeft from "./Icons/ChevronLeft";
@@ -29,7 +29,7 @@ const SettingsDialog: FC<SettingsProps> = ({
   const subtitlesSectionRef = useRef<HTMLDivElement>(null);
   const qualitySectionRef = useRef<HTMLDivElement>(null);
 
-  const sections: { [key: string]: any } = {
+  const sections: { [key: string]: RefObject<HTMLDivElement> } = {
     main: mainSectionRef,
     speed: speedSectionRef,
     subtitles: subtitlesSectionRef,
@@ -38,12 +38,11 @@ const SettingsDialog: FC<SettingsProps> = ({
 
   useEffect(() => {
     if (sections[activeSection].current) {
-      const elementHeight = sections[activeSection].current.offsetHeight;
-      setHeight(elementHeight > 250 ? 250 : elementHeight);
-      sections[activeSection].current.scrollTo &&
-        sections[activeSection].current.scrollTo(0, 0);
+      const elementHeight = sections[activeSection].current?.offsetHeight;
+      setHeight((elementHeight && elementHeight > 250) ? 250 : elementHeight!);
+      sections[activeSection].current?.scrollTo &&
+        sections[activeSection].current?.scrollTo(0, 0);
     }
-
     // eslint-disable-next-line
   }, [activeSection]);
 

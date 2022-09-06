@@ -4,16 +4,15 @@ import React, {
   ReactElement,
   createRef,
   RefObject,
+  ReactNode
 } from "react";
+import type { SrcType, SubtitleType, RendererType } from "../shared/types";
 
-import { PlayerProps } from "../shared/types";
-
-interface Props extends PlayerProps {
-  renderer?: (
-    ref: RefObject<HTMLVideoElement>,
-    props: HTMLProps<HTMLVideoElement> & { src: string }
-  ) => ReactElement;
-  children?: any;
+interface Props {
+  renderer?: RendererType;
+  children?: ReactNode;
+  src: SrcType,
+  subtitles?: SubtitleType[]
 }
 
 class ErrorBoundary extends Component<Props, { hasError: boolean }> {

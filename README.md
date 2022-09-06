@@ -29,18 +29,18 @@ A React video player library with YouTube-like UI
 ## Installation
 
 ```bash
-npm i react-tuby
+npm i @ducanh2912/react-tuby
 # or
-# yarn add react-tuby
+# yarn add @ducanh2912/react-tuby
 # or
-# pnpm add react-tuby
+# pnpm add @ducanh2912/react-tuby
 ```
 
 ## Import
 
 ```jsx
-import { Player } from "react-tuby";
-import "react-tuby/css/main.css";
+import { Player } from "@ducanh2912/react-tuby";
+import "@ducanh2912/react-tuby/css/main.css";
 ```
 
 ## Example player
@@ -139,10 +139,14 @@ This library uses **render props** to allow user to set custom render component
 
 ### Usage with m3u8 / HLS
 
-Install react-hls-player
+Install react-hls-player (I'd recommend my fork @ducanh2912/react-hls-player though, since that package isn't maintained anymore)
 
-```
-npm i react-hls-player --force
+```bash
+npm i react-hls-player
+# or
+# yarn add react-hls-player
+# or
+# pnpm add react-hls-player
 ```
 
 Usage

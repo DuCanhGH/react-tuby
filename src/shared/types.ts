@@ -17,19 +17,26 @@ interface Internationalization {
   settingsModalOff?: string;
 }
 
+export interface SubtitleType {
+  lang: string;
+  language: string;
+  url: string;
+};
+
+export type SrcType = | {
+  quality: number | string;
+  url: string;
+}[] | string;
+
+export type RendererType = (
+  ref: RefObject<HTMLVideoElement>,
+  props: HTMLProps<HTMLVideoElement> & { src: string }
+) => ReactElement;
+
 export interface PlayerProps {
   playerKey?: string;
-  src:
-    | {
-        quality: number | string;
-        url: string;
-      }[]
-    | string;
-  subtitles?: {
-    lang: string;
-    language: string;
-    url: string;
-  }[];
+  src: SrcType;
+  subtitles?: SubtitleType[];
   dimensions?: number | { width: number | string; height: number | string };
   primaryColor?: string;
   poster?: string;
@@ -47,12 +54,7 @@ export interface PlayerProps {
         subtitle?: boolean;
       };
   playerRef?: RefObject<HTMLVideoElement>;
-  children?: (
-    ref: RefObject<HTMLVideoElement>,
-    props: HTMLProps<HTMLVideoElement> & {
-      src: string;
-    }
-  ) => ReactElement;
+  children?: RendererType;
 }
 
 export interface SettingsProps {

@@ -1,19 +1,25 @@
-import React, { FC, useEffect, useRef } from "react";
+import React, { FC, useEffect, useRef, RefObject, ReactElement } from "react";
 
 interface ClickAwayListenerProps {
   onClickAway: () => void;
-  children: (ref: any) => any;
+  children: (ref: RefObject<HTMLDivElement>) => ReactElement;
 }
 
 const ClickAwayListener: FC<ClickAwayListenerProps> = ({
   children,
   onClickAway,
 }) => {
-  const childrenRef = useRef<HTMLElement>(null);
+  const childrenRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handler = (e: any) => {
-      if (childrenRef.current && !childrenRef.current.contains(e.target)) {
+    const handler = (e: MouseEvent) => {
+      if (
+        childrenRef.current &&
+        !childrenRef.current.contains(
+          // @ts-expect-error
+          e.target
+        )
+      ) {
         onClickAway();
       }
     };
