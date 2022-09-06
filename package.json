@@ -34,16 +34,12 @@
     "typecheck": "tsc",
     "format": "prettier --write .",
     "prepublishOnly": "npm run build",
+    "prepare": "husky install",
     "size": "size-limit",
     "analyze": "size-limit --why"
   },
   "peerDependencies": {
     "react": ">=16.8.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint"
-    }
   },
   "name": "@ducanh2912/react-tuby",
   "description": "A React video player library with YouTube-like UI",

@@ -38,7 +38,7 @@ const SettingsDialog: FC<SettingsProps> = ({
   useEffect(() => {
     if (sections[activeSection].current) {
       const elementHeight = sections[activeSection].current?.offsetHeight;
-      setHeight((elementHeight && elementHeight > 250) ? 250 : elementHeight!);
+      setHeight(elementHeight && elementHeight > 250 ? 250 : elementHeight!);
       sections[activeSection].current?.scrollTo &&
         sections[activeSection].current?.scrollTo(0, 0);
     }

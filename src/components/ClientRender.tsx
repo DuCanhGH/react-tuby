@@ -5,7 +5,7 @@ const ClientRender: FC<{ children: ReactElement }> = ({ children }) => {
   useEffect(() => {
     setRendered(true);
   }, []);
-  return (rendered ? children : <></>);
+  return rendered ? children : <></>;
 };
 
 export default ClientRender;

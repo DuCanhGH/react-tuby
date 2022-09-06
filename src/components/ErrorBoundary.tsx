@@ -3,23 +3,21 @@ import React, {
   HTMLProps,
   createRef,
   RefObject,
-  ReactNode
+  ReactNode,
 } from "react";
 import type { SrcType, SubtitleType, RendererType } from "../shared/types";
 
 interface Props {
   renderer?: RendererType;
   children?: ReactNode;
-  src: SrcType,
-  subtitles?: SubtitleType[]
+  src: SrcType;
+  subtitles?: SubtitleType[];
 }
 
 class ErrorBoundary extends Component<Props, { hasError: boolean }> {
   playerRef: RefObject<HTMLVideoElement>;
   videoProps: HTMLProps<HTMLVideoElement> & { src: string };
-  constructor(
-    props: Props
-  ) {
+  constructor(props: Props) {
     super(props);
     this.state = { hasError: false };
     this.playerRef = createRef<HTMLVideoElement>();

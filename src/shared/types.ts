@@ -21,12 +21,14 @@ export interface SubtitleType {
   lang: string;
   language: string;
   url: string;
-};
+}
 
-export type SrcType = | {
-  quality: number | string;
-  url: string;
-}[] | string;
+export type SrcType =
+  | {
+      quality: number | string;
+      url: string;
+    }[]
+  | string;
 
 export type RendererType = (
   ref: RefObject<HTMLVideoElement>,
