@@ -1,6 +1,5 @@
 import React, { FC, HTMLProps, useEffect, useRef, useState } from "react";
 import { formatVideoTime, isMobile } from "../shared/utils";
-
 import CircularProgress from "./Icons/CircularProgress";
 import ClickAwayListener from "./ClickAwayListener";
 import Cog from "./Icons/Cog";
@@ -11,7 +10,7 @@ import PauseEffect from "./Effect/PauseEffect";
 import PictureInPicture from "./Icons/PictureInPicture";
 import Play from "./Icons/Play";
 import PlayEffect from "./Effect/PlayEffect";
-import { PlayerProps } from "../shared/types";
+import type { PlayerProps } from "../shared/types";
 import SettingsDialog from "./SettingsDialog";
 import SettingsModal from "./SettingsModal";
 import Subtitle from "./Icons/Subtitle";

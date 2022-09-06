@@ -1,11 +1,10 @@
 import React, { FC, useEffect, useRef, useState, RefObject } from "react";
-
 import Check from "./Icons/Check";
 import ChevronLeft from "./Icons/ChevronLeft";
 import ChevronRight from "./Icons/ChevronRight";
 import Quality from "./Icons/Quality";
 import SelectSubtitle from "./Icons/SelectSubtitle";
-import { SettingsProps } from "../shared/types";
+import type { SettingsProps } from "../shared/types";
 import Speed from "./Icons/Speed";
 
 const SettingsDialog: FC<SettingsProps> = ({

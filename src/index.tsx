@@ -1,9 +1,8 @@
 import React, { FC } from "react";
-
 import ClientRender from "./components/ClientRender";
 import ErrorBoundary from "./components/ErrorBoundary";
 import Main from "./components/Main";
-import { PlayerProps } from "./shared/types";
+import type { PlayerProps } from "./shared/types";
 
 export const Player: FC<PlayerProps> = (props) => {
   const { dimensions, primaryColor, children, subtitles, src } = props;

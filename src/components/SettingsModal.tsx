@@ -1,6 +1,5 @@
 import React, { FC } from "react";
-
-import { SettingsProps } from "../shared/types";
+import type { SettingsProps } from "../shared/types";
 
 const SettingsModal: FC<SettingsProps> = ({
   settingsActive,
