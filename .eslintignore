@@ -4,12 +4,15 @@
 .pnp.js
 package.json
 package-lock.json
+pnpm-lock.yaml
+yarn.lock
 
 # testing
 /coverage
 
 # production
 /dist
+/css
 
 # misc
 .DS_Store
