@@ -37,6 +37,7 @@ const Home: NextPage = () => {
             },
           ]}
           poster="https://cdn.jsdelivr.net/gh/naptestdev/video-examples@master/poster.png"
+          playerKey="with-next-example-react-tuby"
         />
       </div>
     </>

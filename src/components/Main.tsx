@@ -69,7 +69,9 @@ const Player: FC<PlayerProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const seekRef = useRef<HTMLDivElement>(null);
   const mouseDownRef = useRef<Boolean>(false);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | number | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | number | null>(
+    null
+  );
   const fullscreenToggleButton = useRef<HTMLButtonElement>(null);
   const pauseButton = useRef<HTMLButtonElement>(null);
   const volumeButtonRef = useRef<HTMLButtonElement>(null);
@@ -255,7 +257,9 @@ const Player: FC<PlayerProps> = ({
               elem.webkitEnterFullscreen ||
               elem.mozRequestFullScreen ||
               elem.msRequestFullscreen;
-            requestFullScreen?.call(elem).catch((err: any) => console.log(err));
+            requestFullScreen
+              ?.call(elem)
+              .catch((err: unknown) => console.error(err));
           }
         } else {
           let elem = containerRef.current as any;
@@ -267,18 +271,24 @@ const Player: FC<PlayerProps> = ({
               elem.webkitEnterFullscreen ||
               elem.mozRequestFullScreen ||
               elem.msRequestFullscreen;
-            requestFullScreen?.call(elem).catch((err: any) => console.log(err));
+            requestFullScreen
+              ?.call(elem)
+              .catch((err: unknown) => console.error(err));
           }
         }
       } else {
-        let doc = document as any;
-        const exitFullScreen =
-          doc.exitFullscreen ||
-          doc.webkitExitFullscreen ||
-          doc.webkitCancelFullScreen ||
-          doc.mozCancelFullScreen ||
-          doc.msExitFullscreen;
-        exitFullScreen?.call(document).catch((err: any) => console.log(err));
+        if (document.fullscreenElement) {
+          let doc = document as any;
+          const exitFullScreen =
+            doc.exitFullscreen ||
+            doc.webkitExitFullscreen ||
+            doc.webkitCancelFullScreen ||
+            doc.mozCancelFullScreen ||
+            doc.msExitFullscreen;
+          exitFullScreen
+            ?.call(document)
+            .catch((err: unknown) => console.error(err));
+        }
       }
     } catch (error) {}
     updateHoverState();
@@ -385,22 +395,22 @@ const Player: FC<PlayerProps> = ({
     onLoadedData: () => {
       setLoadedData(true);
       setDuration(playerRef.current?.duration || 0);
-      let currentTime;
+      let newCurrentTime;
       if (playerKey) {
-        currentTime = Number(
+        newCurrentTime = Number(
           localStorage.getItem(`${playerKey}-time`) as string
         );
-      } else currentTime = 0;
-
-      setCurrentTime(currentTime);
-      playerRef.current && (playerRef.current.currentTime = currentTime);
+      } else newCurrentTime = 0;
+      setCurrentTime(newCurrentTime);
+      playerRef.current && (playerRef.current.currentTime = newCurrentTime);
     },
     onTimeUpdate: () => {
-      if (playerKey)
+      if (playerKey && loadedData) {
         localStorage.setItem(
           `${playerKey}-time`,
           String(playerRef.current?.currentTime || 0)
         );
+      }
       setCurrentTime(playerRef.current?.currentTime || 0);
       setDuration(playerRef.current?.duration || 0);
     },

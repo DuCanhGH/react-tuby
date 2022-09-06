@@ -31,6 +31,7 @@ const TestPlayer = () => {
         },
       ]}
       poster="https://cdn.jsdelivr.net/gh/naptestdev/video-examples@master/poster.png"
+      playerKey="with-vite-example-react-tuby"
     />
   );
 };

@@ -54,7 +54,7 @@ const Home: NextPage = () => {
           />
         </div>
         {!destroy ? (
-          <Player src={hlsUrl}>
+          <Player src={hlsUrl} playerKey="with-react-hls-example-react-tuby">
             {(ref, props) => {
               const { src, ...others } = props;
               return (
