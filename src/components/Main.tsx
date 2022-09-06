@@ -544,6 +544,7 @@ const Player: FC<PlayerProps> = ({
                     : internationalization?.tooltipsPause || "Pause (k)"
                 }
                 onClickCapture={() => setPaused((prev) => !prev)}
+                aria-label="Play or pause the video"
               >
                 {paused ? (
                   <Play className="tuby-icon-sm" />
@@ -562,6 +563,7 @@ const Player: FC<PlayerProps> = ({
                       : internationalization?.tooltipsMute || "Mute (m)"
                   }
                   onClickCapture={toggleSound}
+                  aria-label="Click to either mute or unmute. Hover and use the slider next to the button to change the volume"
                 >
                   {isMuted || volume === 0 ? (
                     <VolumeMuted className="tuby-icon-sm" />
@@ -582,6 +584,7 @@ const Player: FC<PlayerProps> = ({
                       setVolume(+e.target.value);
                       setIsMuted(+e.target.value === 0);
                     }}
+                    aria-label="Change the volume of the video"
                   />
                   <div
                     className="tuby-volume-left-bar"
@@ -612,6 +615,7 @@ const Player: FC<PlayerProps> = ({
                       ? setSubtitleIndex(-1)
                       : setSubtitleIndex(0)
                   }
+                  aria-label="Toggle subtitles for this video"
                 >
                   <Subtitle className="tuby-icon-sm" />
                 </button>
@@ -629,6 +633,7 @@ const Player: FC<PlayerProps> = ({
                               "Settings",
                           }
                         : {})}
+                      aria-label="Open settings for this video"
                     >
                       <Cog className="tuby-icon-sm" />
                     </button>
@@ -680,6 +685,7 @@ const Player: FC<PlayerProps> = ({
                         (playerRef.current as any)?.requestPictureInPicture();
                     } catch (error) {}
                   }}
+                  aria-label="Enable Picture in Picture"
                 >
                   <PictureInPicture className="tuby-icon-sm" />
                 </button>
@@ -696,6 +702,7 @@ const Player: FC<PlayerProps> = ({
                       "Full screen (f)"
                 }`}
                 onClickCapture={() => setOnFullScreen((prev) => !prev)}
+                aria-label="Exit or enter full screen mode"
               >
                 {onFullScreen ? (
                   <ExitFullScreen className="tuby-icon-sm" />
