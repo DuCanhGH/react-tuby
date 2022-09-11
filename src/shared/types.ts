@@ -35,8 +35,7 @@ export type RendererType = (
   props: HTMLProps<HTMLVideoElement> & { src: string }
 ) => ReactElement;
 
-export interface PlayerProps {
-  playerKey?: string;
+interface BasePlayerProps {
   src: SrcType;
   subtitles?: SubtitleType[];
   dimensions?: number | { width: number | string; height: number | string };
@@ -57,7 +56,27 @@ export interface PlayerProps {
       };
   playerRef?: RefObject<HTMLVideoElement>;
   children?: RendererType;
+  preserve?: {
+    volume?: boolean;
+    playbackSpeed?: boolean;
+  };
 }
+
+interface HasPlayerKeyPlayerProps extends BasePlayerProps {
+  playerKey: string;
+  preserve?: BasePlayerProps["preserve"] & {
+    watchTime?: boolean;
+  };
+}
+
+interface NoPlayerKeyPlayerProps extends BasePlayerProps {
+  playerKey?: undefined;
+  preserve?: BasePlayerProps["preserve"] & {
+    watchTime?: undefined;
+  };
+}
+
+export type PlayerProps = HasPlayerKeyPlayerProps | NoPlayerKeyPlayerProps;
 
 export interface SettingsProps {
   settingsActive: boolean;

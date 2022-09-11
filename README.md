@@ -92,6 +92,7 @@ import "@ducanh2912/react-tuby/css/main.css";
 | **playerRef**            | RefObject\<HTMLVideoElement\>                                                                                                  | Use your own ref to control the video player                                                             |
 | **pictureInPicture**     | boolean                                                                                                                        | Show picture in picture button                                                                           |
 | **keyboardShortcut**     | boolean \| { pause?: boolean; rewind?: boolean; forward?: boolean; fullScreen?: boolean; mute?: boolean; subtitle?: boolean; } | Customize keyboard shortcuts                                                                             |
+| **preserve**             | { watchTime?: boolean; volume?: boolean; playbackSpeed?: boolean; }                                                            | Choose which values to preserve in localStorage                                                          |
 
 ## Examples
 

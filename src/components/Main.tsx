@@ -30,10 +30,15 @@ const Player: FC<PlayerProps> = ({
   playerRef: passedDownRef,
   pictureInPicture = false,
   keyboardShortcut = true,
+  preserve = {
+    watchTime: true,
+    playbackSpeed: true,
+    volume: true,
+  },
 }) => {
   const [quality, setQuality] = useState(0);
   const [playbackSpeed, setPlaybackSpeed] = useState(
-    Number(localStorage.getItem("tuby-speed")) || 1
+    preserve.playbackSpeed ? Number(localStorage.getItem("tuby-speed")) || 1 : 1
   );
   const [paused, setPaused] = useState(true);
   const [onFullScreen, setOnFullScreen] = useState(false);
@@ -52,12 +57,15 @@ const Player: FC<PlayerProps> = ({
   const [loadedData, setLoadedData] = useState(false);
 
   const [volume, setVolume] = useState(
-    isNaN(parseInt(localStorage.getItem("tuby-volume") as string))
+    !preserve.volume &&
+      isNaN(parseInt(localStorage.getItem("tuby-volume") as string))
       ? 100
       : Number(localStorage.getItem("tuby-volume"))
   );
   const [isMuted, setIsMuted] = useState(
-    Boolean(Number(localStorage.getItem("tuby-muted")))
+    preserve.volume
+      ? Boolean(Number(localStorage.getItem("tuby-muted")))
+      : false
   );
 
   const [hoverEnabled, setHoverEnabled] = useState(true);
@@ -199,8 +207,10 @@ const Player: FC<PlayerProps> = ({
       playerRef.current.volume = isMuted ? 0 : volume / 100;
     }
 
-    localStorage.setItem("tuby-volume", String(volume));
-    localStorage.setItem("tuby-muted", String(+isMuted));
+    if (preserve.volume) {
+      localStorage.setItem("tuby-volume", String(volume));
+      localStorage.setItem("tuby-muted", String(+isMuted));
+    }
   }, [volume, isMuted]);
 
   useEffect(() => {
@@ -318,7 +328,9 @@ const Player: FC<PlayerProps> = ({
   useEffect(() => {
     if (!playerRef.current) return;
 
-    localStorage.setItem("tuby-speed", String(playbackSpeed));
+    if (preserve.playbackSpeed) {
+      localStorage.setItem("tuby-speed", String(playbackSpeed));
+    }
 
     playerRef.current.playbackRate = playbackSpeed;
   }, [playbackSpeed]);
@@ -396,7 +408,7 @@ const Player: FC<PlayerProps> = ({
       setLoadedData(true);
       setDuration(playerRef.current?.duration || 0);
       let newCurrentTime;
-      if (playerKey) {
+      if (playerKey && preserve.watchTime) {
         newCurrentTime = Number(
           localStorage.getItem(`${playerKey}-time`) as string
         );
@@ -405,7 +417,7 @@ const Player: FC<PlayerProps> = ({
       playerRef.current && (playerRef.current.currentTime = newCurrentTime);
     },
     onTimeUpdate: () => {
-      if (playerKey && loadedData) {
+      if (playerKey && loadedData && preserve.watchTime) {
         localStorage.setItem(
           `${playerKey}-time`,
           String(playerRef.current?.currentTime || 0)
