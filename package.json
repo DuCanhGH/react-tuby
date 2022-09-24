@@ -2,7 +2,7 @@
   "name": "@ducanh2912/react-tuby",
   "author": "napthedev, DuCanhGH",
   "description": "A React video player library with YouTube-like UI",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "license": "MIT",
   "source": "./src/index.tsx",
   "exports": {
