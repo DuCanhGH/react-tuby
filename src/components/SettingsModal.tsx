@@ -17,10 +17,18 @@ const SettingsModal: FC<SettingsProps> = ({
   return (
     <div
       onClick={() => setSettingsActive(false)}
-      className={`tuby-backdrop ${settingsActive ? "tuby-show" : ""}`}
+      onKeyDown={() => setSettingsActive(false)}
       role="button"
+      tabIndex={0}
+      className={`tuby-backdrop ${settingsActive ? "tuby-show" : ""}`}
     >
-      <div onClick={(e) => e.stopPropagation()} className="tuby-modal">
+      <div
+        onClick={(e) => e.stopPropagation()}
+        onKeyDown={(e) => e.stopPropagation()}
+        role="button"
+        tabIndex={0}
+        className="tuby-modal"
+      >
         <h1>{internationalization?.tooltipsSettings || "Settings"}</h1>
 
         <div>

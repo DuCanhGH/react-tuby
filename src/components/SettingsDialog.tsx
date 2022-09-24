@@ -59,11 +59,9 @@ const SettingsDialog: FC<SettingsProps> = ({
               : "tuby-settings-translate-left"
           }`}
         >
-          <div
+          <button
             onClick={() => setActiveSection("speed")}
             className="tuby-settings-item"
-            role="button"
-            tabIndex={0}
           >
             <div className="tuby-settings-item-left">
               <Speed className="tuby-icon-sm" />
@@ -73,34 +71,30 @@ const SettingsDialog: FC<SettingsProps> = ({
               </p>
             </div>
             <ChevronRight className="tuby-chevron" />
-          </div>
+          </button>
           {subtitles && (
-            <div
+            <button
               onClick={() => setActiveSection("subtitles")}
               className="tuby-settings-item"
-              role="button"
-              tabIndex={0}
             >
               <div className="tuby-settings-item-left">
                 <SelectSubtitle className="tuby-icon-sm" />
                 <p>{internationalization?.settingsSubtitles || "Subtitles"}</p>
               </div>
               <ChevronRight style={{ width: 15, height: 15 }} />
-            </div>
+            </button>
           )}
           {typeof src !== "string" && (
-            <div
+            <button
               onClick={() => setActiveSection("quality")}
               className="tuby-settings-item"
-              role="button"
-              tabIndex={0}
             >
               <div className="tuby-settings-item-left">
                 <Quality className="tuby-icon-sm" />
                 <p>{internationalization?.settingsQuality || "Quality"}</p>
               </div>
               <ChevronRight className="tuby-chevron" />
-            </div>
+            </button>
           )}
         </div>
 
@@ -112,17 +106,15 @@ const SettingsDialog: FC<SettingsProps> = ({
               : "tuby-settings-translate-right"
           }`}
         >
-          <div
+          <button
             onClick={() => setActiveSection("main")}
             className="tuby-settings-section-header"
-            role="button"
-            tabIndex={0}
           >
             <ChevronLeft className="tuby-chevron" />
             <span>
               {internationalization?.settingsPlaybackSpeed || "Playback speed"}
             </span>
-          </div>
+          </button>
           <div className="tuby-settings-py">
             {new Array(8)
               .fill("")
@@ -133,15 +125,13 @@ const SettingsDialog: FC<SettingsProps> = ({
                   : (index + 1) / 4
               )
               .map((item, index) => (
-                <div
+                <button
                   key={item}
                   onClick={() => {
                     setPlaybackSpeed((index + 1) / 4);
                     setActiveSection("main");
                   }}
                   className="tuby-settings-item-2"
-                  role="button"
-                  tabIndex={0}
                 >
                   {playbackSpeed === (index + 1) / 4 ? (
                     <Check className="tuby-chevron" />
@@ -149,7 +139,7 @@ const SettingsDialog: FC<SettingsProps> = ({
                     <div style={{ width: 15, height: 15 }}></div>
                   )}
                   <span>{item}</span>
-                </div>
+                </button>
               ))}
           </div>
         </div>
@@ -163,26 +153,22 @@ const SettingsDialog: FC<SettingsProps> = ({
                 : "tuby-settings-translate-right"
             }`}
           >
-            <div
+            <button
               onClick={() => setActiveSection("main")}
               className="tuby-settings-section-header"
-              role="button"
-              tabIndex={0}
             >
               <ChevronLeft className="tuby-chevron" />
               <span>
                 {internationalization?.settingsSubtitles || "Subtitles"}
               </span>
-            </div>
+            </button>
             <div className="tuby-settings-py">
-              <div
+              <button
                 onClick={() => {
                   setSubtitleIndex(-1);
                   setActiveSection("main");
                 }}
                 className="tuby-settings-item-2"
-                role="button"
-                tabIndex={0}
               >
                 {subtitleIndex === -1 ? (
                   <Check className="tuby-chevron" />
@@ -192,17 +178,15 @@ const SettingsDialog: FC<SettingsProps> = ({
                 <span>
                   {internationalization?.settingsSubtitlesOff || "Off"}
                 </span>
-              </div>
+              </button>
               {subtitles.map((subtitle, index) => (
-                <div
+                <button
                   key={subtitle.lang}
                   onClick={() => {
                     setSubtitleIndex(index);
                     setActiveSection("main");
                   }}
                   className="tuby-settings-item-2"
-                  role="button"
-                  tabIndex={0}
                 >
                   {subtitleIndex === index ? (
                     <Check className="tuby-chevron" />
@@ -210,7 +194,7 @@ const SettingsDialog: FC<SettingsProps> = ({
                     <div style={{ width: 15, height: 15 }}></div>
                   )}
                   <span>{subtitle.language}</span>
-                </div>
+                </button>
               ))}
             </div>
           </div>
@@ -225,26 +209,22 @@ const SettingsDialog: FC<SettingsProps> = ({
                 : "tuby-settings-translate-right"
             }`}
           >
-            <div
+            <button
               onClick={() => setActiveSection("main")}
               className="tuby-settings-section-header"
-              role="button"
-              tabIndex={0}
             >
               <ChevronLeft className="tuby-chevron" />
               <span>{internationalization?.settingsQuality || "Quality"}</span>
-            </div>
+            </button>
             <div className="tuby-settings-py">
               {src.map((source, index) => (
-                <div
+                <button
                   key={source.quality}
                   onClick={() => {
                     setQuality(index);
                     setActiveSection("main");
                   }}
                   className="tuby-settings-item-2"
-                  role="button"
-                  tabIndex={0}
                 >
                   {quality === index ? (
                     <Check className="tuby-chevron" />
@@ -256,7 +236,7 @@ const SettingsDialog: FC<SettingsProps> = ({
                       ? `${source.quality}p`
                       : source.quality}
                   </span>
-                </div>
+                </button>
               ))}
             </div>
           </div>

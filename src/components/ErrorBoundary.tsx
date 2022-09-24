@@ -52,6 +52,7 @@ class ErrorBoundary extends Component<Props, { hasError: boolean }> {
           {this.props.renderer ? (
             this.props.renderer(this.playerRef, this.videoProps)
           ) : (
+            // eslint-disable-next-line jsx-a11y/media-has-caption
             <video ref={this.playerRef} {...this.videoProps} />
           )}
         </div>

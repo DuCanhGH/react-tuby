@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import type { FC, HTMLProps } from "react";
 import { formatVideoTime, isMobile } from "../shared/utils";
 import CircularProgress from "./Icons/CircularProgress";
@@ -86,10 +86,6 @@ const Player: FC<PlayerProps> = ({
   const volumeButtonRef = useRef<HTMLButtonElement>(null);
   const subtitleButtonRef = useRef<HTMLButtonElement>(null);
 
-  const seekTime = (amount: number) => {
-    playerRef.current && (playerRef.current.currentTime += amount);
-  };
-
   const updateHoverState = () => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     setHoverEnabled(true);
@@ -131,7 +127,7 @@ const Player: FC<PlayerProps> = ({
         ? 0
         : offsetInPercentage;
 
-    let offsetInPixel = offsetInPercentage * seekRef.current.offsetWidth;
+    const offsetInPixel = offsetInPercentage * seekRef.current.offsetWidth;
 
     let newTime = offsetInPercentage * playerRef.current.duration;
 
@@ -212,11 +208,11 @@ const Player: FC<PlayerProps> = ({
       localStorage.setItem("tuby-volume", String(volume));
       localStorage.setItem("tuby-muted", String(+isMuted));
     }
-  }, [volume, isMuted]);
+  }, [volume, isMuted, playerRef, preserve.volume]);
 
   useEffect(() => {
     const changeHandler = () => {
-      let doc = document as any;
+      const doc = document as any;
       const fullscreenElement =
         doc.fullscreenElement ||
         doc.webkitFullscreenElement ||
@@ -241,7 +237,7 @@ const Player: FC<PlayerProps> = ({
       setPaused(true);
     };
 
-    let player = playerRef.current;
+    const player = playerRef.current;
 
     player?.addEventListener("webkitendfullscreen", endFullScreenHandler);
 
@@ -253,13 +249,13 @@ const Player: FC<PlayerProps> = ({
 
       player?.removeEventListener("webkitendfullscreen", endFullScreenHandler);
     };
-  }, []);
+  }, [playerRef]);
 
   useEffectUpdate(() => {
     try {
       if (onFullScreen) {
         if (isMobile()) {
-          let elem = playerRef.current as any;
+          const elem = playerRef.current as any;
           if (elem) {
             const requestFullScreen =
               elem.requestFullscreen ||
@@ -273,7 +269,7 @@ const Player: FC<PlayerProps> = ({
               .catch((err: unknown) => console.error(err));
           }
         } else {
-          let elem = containerRef.current as any;
+          const elem = containerRef.current as any;
           if (elem) {
             const requestFullScreen =
               elem.requestFullscreen ||
@@ -289,7 +285,7 @@ const Player: FC<PlayerProps> = ({
         }
       } else {
         if (document.fullscreenElement) {
-          let doc = document as any;
+          const doc = document as any;
           const exitFullScreen =
             doc.exitFullscreen ||
             doc.webkitExitFullscreen ||
@@ -301,7 +297,9 @@ const Player: FC<PlayerProps> = ({
             .catch((err: unknown) => console.error(err));
         }
       }
-    } catch (error) {}
+    } catch (error) {
+      /* Empty */
+    }
     updateHoverState();
   }, [onFullScreen]);
 
@@ -334,12 +332,14 @@ const Player: FC<PlayerProps> = ({
     }
 
     playerRef.current.playbackRate = playbackSpeed;
-  }, [playbackSpeed]);
+  }, [playbackSpeed, playerRef, preserve.playbackSpeed]);
 
   useEffect(() => {
     const keyHandler = (e: KeyboardEvent) => {
       if (!keyboardShortcut) return;
-
+      const seekTime = (amount: number) => {
+        playerRef.current && (playerRef.current.currentTime += amount);
+      };
       if (containerRef.current?.contains(document.activeElement)) {
         if (document.activeElement instanceof HTMLElement) {
           document.activeElement.blur();
@@ -392,7 +392,7 @@ const Player: FC<PlayerProps> = ({
       window.removeEventListener("keyup", keyHandler);
       window.removeEventListener("keydown", spacePressHandler);
     };
-  }, [seekDuration, keyboardShortcut]);
+  }, [seekDuration, playerRef, keyboardShortcut]);
 
   const videoProps: HTMLProps<HTMLVideoElement> & { src: string } = {
     crossOrigin: "anonymous",
@@ -464,6 +464,7 @@ const Player: FC<PlayerProps> = ({
         {children ? (
           children(playerRef, videoProps)
         ) : (
+          // eslint-disable-next-line jsx-a11y/media-has-caption
           <video ref={playerRef} {...videoProps} />
         )}
 
@@ -490,10 +491,12 @@ const Player: FC<PlayerProps> = ({
             <Play className="tuby-icon-md" />
           </div>
         )}
-
         <div
           onTouchEnd={() => setHoverEnabled(true)}
           onClick={() => setHoverEnabled(true)}
+          onKeyDown={() => setHoverEnabled(true)}
+          role="button"
+          tabIndex={0}
           onMouseEnter={() =>
             timeoutRef.current && clearTimeout(timeoutRef.current)
           }
@@ -515,6 +518,8 @@ const Player: FC<PlayerProps> = ({
             }}
             onMouseMove={(e) => handleSeekPreview(e.clientX)}
             onMouseLeave={() => setSeekPreview(null)}
+            role="button"
+            tabIndex={0}
             className="tuby-seek"
           >
             <div className="tuby-seek-bar">
@@ -631,7 +636,7 @@ const Player: FC<PlayerProps> = ({
                     subtitleIndex >= 0 ? "tuby-icon-underline" : ""
                   }`}
                   data-tuby-tooltips={
-                    internationalization?.tooltipsSubtitles || `Subtitles (c)`
+                    internationalization?.tooltipsSubtitles || "Subtitles (c)"
                   }
                   onClickCapture={() =>
                     subtitleIndex >= 0
@@ -704,7 +709,9 @@ const Player: FC<PlayerProps> = ({
                       if (document?.pictureInPictureElement)
                         document?.exitPictureInPicture();
                       else playerRef.current?.requestPictureInPicture();
-                    } catch (error) {}
+                    } catch (error) {
+                      /* Empty */
+                    }
                   }}
                   aria-label="Enable Picture in Picture"
                 >
