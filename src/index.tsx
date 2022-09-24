@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { type FC } from "react";
 import ClientRender from "./components/ClientRender";
 import ErrorBoundary from "./components/ErrorBoundary";
 import Main from "./components/Main";

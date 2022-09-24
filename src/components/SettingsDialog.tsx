@@ -1,4 +1,5 @@
-import React, { FC, useEffect, useRef, useState, RefObject } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import type { FC, RefObject } from "react";
 import Check from "./Icons/Check";
 import ChevronLeft from "./Icons/ChevronLeft";
 import ChevronRight from "./Icons/ChevronRight";
@@ -62,6 +63,7 @@ const SettingsDialog: FC<SettingsProps> = ({
             onClick={() => setActiveSection("speed")}
             className="tuby-settings-item"
             role="button"
+            tabIndex={0}
           >
             <div className="tuby-settings-item-left">
               <Speed className="tuby-icon-sm" />
@@ -77,6 +79,7 @@ const SettingsDialog: FC<SettingsProps> = ({
               onClick={() => setActiveSection("subtitles")}
               className="tuby-settings-item"
               role="button"
+              tabIndex={0}
             >
               <div className="tuby-settings-item-left">
                 <SelectSubtitle className="tuby-icon-sm" />
@@ -90,6 +93,7 @@ const SettingsDialog: FC<SettingsProps> = ({
               onClick={() => setActiveSection("quality")}
               className="tuby-settings-item"
               role="button"
+              tabIndex={0}
             >
               <div className="tuby-settings-item-left">
                 <Quality className="tuby-icon-sm" />
@@ -112,6 +116,7 @@ const SettingsDialog: FC<SettingsProps> = ({
             onClick={() => setActiveSection("main")}
             className="tuby-settings-section-header"
             role="button"
+            tabIndex={0}
           >
             <ChevronLeft className="tuby-chevron" />
             <span>
@@ -136,6 +141,7 @@ const SettingsDialog: FC<SettingsProps> = ({
                   }}
                   className="tuby-settings-item-2"
                   role="button"
+                  tabIndex={0}
                 >
                   {playbackSpeed === (index + 1) / 4 ? (
                     <Check className="tuby-chevron" />
@@ -161,6 +167,7 @@ const SettingsDialog: FC<SettingsProps> = ({
               onClick={() => setActiveSection("main")}
               className="tuby-settings-section-header"
               role="button"
+              tabIndex={0}
             >
               <ChevronLeft className="tuby-chevron" />
               <span>
@@ -175,6 +182,7 @@ const SettingsDialog: FC<SettingsProps> = ({
                 }}
                 className="tuby-settings-item-2"
                 role="button"
+                tabIndex={0}
               >
                 {subtitleIndex === -1 ? (
                   <Check className="tuby-chevron" />
@@ -194,6 +202,7 @@ const SettingsDialog: FC<SettingsProps> = ({
                   }}
                   className="tuby-settings-item-2"
                   role="button"
+                  tabIndex={0}
                 >
                   {subtitleIndex === index ? (
                     <Check className="tuby-chevron" />
@@ -220,6 +229,7 @@ const SettingsDialog: FC<SettingsProps> = ({
               onClick={() => setActiveSection("main")}
               className="tuby-settings-section-header"
               role="button"
+              tabIndex={0}
             >
               <ChevronLeft className="tuby-chevron" />
               <span>{internationalization?.settingsQuality || "Quality"}</span>
@@ -234,6 +244,7 @@ const SettingsDialog: FC<SettingsProps> = ({
                   }}
                   className="tuby-settings-item-2"
                   role="button"
+                  tabIndex={0}
                 >
                   {quality === index ? (
                     <Check className="tuby-chevron" />

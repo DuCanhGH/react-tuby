@@ -1,4 +1,5 @@
-import React, { FC, HTMLProps, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import type { FC, HTMLProps } from "react";
 import { formatVideoTime, isMobile } from "../shared/utils";
 import CircularProgress from "./Icons/CircularProgress";
 import ClickAwayListener from "./ClickAwayListener";

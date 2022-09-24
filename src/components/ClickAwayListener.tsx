@@ -1,4 +1,5 @@
-import React, { FC, useEffect, useRef, RefObject, ReactElement } from "react";
+import React, { useEffect, useRef } from "react";
+import type { FC, RefObject, ReactElement } from "react";
 
 interface ClickAwayListenerProps {
   onClickAway: () => void;

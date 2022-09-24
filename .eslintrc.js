@@ -15,13 +15,15 @@ module.exports = {
     "prettier",
   ],
   parserOptions: {
+    tsconfigRootDir: __dirname,
+    project: ["tsconfig.json"],
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 2020,
+    ecmaVersion: "latest",
     sourceType: "module",
   },
-  plugins: ["react", "react-hooks", "@typescript-eslint"],
+  plugins: ["react", "react-hooks", "@typescript-eslint", "simple-import-sort"],
   settings: {
     react: {
       version: "detect",
@@ -34,6 +36,7 @@ module.exports = {
     "react-hooks/exhaustive-deps": "warn",
     "prettier/prettier": "off",
     "no-irregular-whitespace": "off",
+    "no-unused-vars": "off",
     indent: ["error", 2, { SwitchCase: 1 }],
     "linebreak-style": "off",
     semi: ["error", "always"],

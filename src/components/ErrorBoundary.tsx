@@ -1,10 +1,5 @@
-import React, {
-  Component,
-  HTMLProps,
-  createRef,
-  RefObject,
-  ReactNode,
-} from "react";
+import React, { Component, createRef } from "react";
+import type { ReactNode, RefObject, HTMLProps } from "react";
 import type { SrcType, SubtitleType, RendererType } from "../shared/types";
 
 interface Props {

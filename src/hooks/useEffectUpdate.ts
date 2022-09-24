@@ -1,4 +1,4 @@
-import { useEffect, useRef, DependencyList } from "react";
+import { useEffect, useRef, type DependencyList } from "react";
 
 export const useEffectUpdate = (cb: Function, dependencies: DependencyList) => {
   const updated = useRef(false);
@@ -8,5 +8,6 @@ export const useEffectUpdate = (cb: Function, dependencies: DependencyList) => {
       return;
     }
     cb();
+    //eslint-disable-next-line
   }, dependencies);
 };

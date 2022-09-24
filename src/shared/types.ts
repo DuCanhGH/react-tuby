@@ -1,4 +1,4 @@
-import { HTMLProps, RefObject, ReactElement } from "react";
+import type { HTMLProps, RefObject, ReactElement } from "react";
 
 interface Internationalization {
   tooltipsPlay?: string;
