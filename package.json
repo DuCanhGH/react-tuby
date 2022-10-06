@@ -79,6 +79,12 @@
     }
   ],
   "devDependencies": {
+    "@semantic-release/changelog": "6.0.1",
+    "@semantic-release/commit-analyzer": "9.0.2",
+    "@semantic-release/git": "10.0.1",
+    "@semantic-release/github": "8.0.6",
+    "@semantic-release/npm": "9.0.1",
+    "@semantic-release/release-notes-generator": "10.0.3",
     "@size-limit/preset-small-lib": "8.1.0",
     "@size-limit/webpack": "8.1.0",
     "@size-limit/webpack-why": "8.1.0",
@@ -106,6 +112,7 @@
     "react-dom": "18.2.0",
     "rimraf": "3.0.2",
     "sass": "1.55.0",
+    "semantic-release": "19.0.5",
     "size-limit": "8.1.0",
     "ts-jest": "29.0.2",
     "tslib": "2.4.0",
