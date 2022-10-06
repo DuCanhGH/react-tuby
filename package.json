@@ -48,7 +48,7 @@
   "bugs": {
     "url": "https://github.com/DuCanhGH/react-tuby/issues"
   },
-  "homepage": "https://github.com/DuCanhGH/react-tuby#README",
+  "homepage": "https://github.com/DuCanhGH/react-tuby#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DuCanhGH/react-tuby.git"
@@ -62,19 +62,19 @@
   ],
   "size-limit": [
     {
-      "path": "dist/index.js",
+      "path": "dist/ducanh2912-react-tuby.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/index.modern.mjs",
+      "path": "dist/ducanh2912-react-tuby.modern.mjs",
       "limit": "10 KB"
     },
     {
-      "path": "dist/index.module.js",
+      "path": "dist/ducanh2912-react-tuby.module.js",
       "limit": "10 KB"
     },
     {
-      "path": "dist/index.umd.js",
+      "path": "dist/ducanh2912-react-tuby.umd.js",
       "limit": "10 KB"
     }
   ],
