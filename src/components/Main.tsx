@@ -400,7 +400,11 @@ const Player: FC<PlayerProps> = ({
     for (let i = 0; i < video.textTracks.length; i++) {
       video.textTracks[i].mode = "hidden";
     }
-    if (subtitleIndex < video.textTracks.length) {
+    if (
+      subtitleIndex < video.textTracks.length &&
+      video.textTracks &&
+      video.textTracks[subtitleIndex]
+    ) {
       video.textTracks[subtitleIndex].mode = "showing";
     }
   }, [playerRef, subtitleIndex]);
