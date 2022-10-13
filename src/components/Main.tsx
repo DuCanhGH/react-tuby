@@ -394,6 +394,17 @@ const Player: FC<PlayerProps> = ({
     };
   }, [seekDuration, playerRef, keyboardShortcut]);
 
+  useEffect(() => {
+    const video = playerRef.current;
+    if (!video) return;
+    for (let i = 0; i < video.textTracks.length; i++) {
+      video.textTracks[i].mode = "hidden";
+    }
+    if (subtitleIndex < video.textTracks.length) {
+      video.textTracks[subtitleIndex].mode = "showing";
+    }
+  }, [playerRef, subtitleIndex]);
+
   const videoProps: HTMLProps<HTMLVideoElement> & { src: string } = {
     crossOrigin: "anonymous",
     playsInline: true,
@@ -437,15 +448,19 @@ const Player: FC<PlayerProps> = ({
         {subtitles &&
           subtitles.length > 0 &&
           subtitleIndex >= 0 &&
-          loadedData && (
+          loadedData &&
+          subtitles.map((sub, index) => (
             <track
+              key={`react-tuby-player${playerKey ? `-${playerKey}` : ""}-${
+                sub.lang
+              }`}
               kind="subtitles"
-              srcLang={subtitles[subtitleIndex].lang}
-              label={subtitles[subtitleIndex].language}
-              src={subtitles[subtitleIndex].url}
-              default
+              srcLang={sub.lang}
+              label={sub.language}
+              src={sub.url}
+              default={index === 0}
             />
-          )}
+          ))}
       </>
     ),
   };
