@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/DuCanhGH/react-tuby/compare/v1.0.0...v1.0.1) (2022-10-13)
+
+
+### Bug Fixes
+
+* changing subtitles should now work in Firefox ([57e1137](https://github.com/DuCanhGH/react-tuby/commit/57e1137ff817a2a05f43849ee55ddf80e40c852e))
+
 # 1.0.0 (2022-10-06)
 
 ### Bug Fixes
