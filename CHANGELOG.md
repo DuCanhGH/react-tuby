@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/DuCanhGH/react-tuby/compare/v1.0.1...v1.0.2) (2022-10-13)
+
+
+### Bug Fixes
+
+* toggling subtitles shouldn't crash player anymore (sorry) ([fd42e29](https://github.com/DuCanhGH/react-tuby/commit/fd42e29a54ce9e0506717b009e496f97c73c78c2))
+
 ## [1.0.1](https://github.com/DuCanhGH/react-tuby/compare/v1.0.0...v1.0.1) (2022-10-13)
 
 
