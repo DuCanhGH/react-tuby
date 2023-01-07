@@ -1,18 +1,22 @@
 ## [1.0.3](https://github.com/DuCanhGH/react-tuby/compare/v1.0.2...v1.0.3) (2022-12-06)
 
-## [1.0.2](https://github.com/DuCanhGH/react-tuby/compare/v1.0.1...v1.0.2) (2022-10-13)
+## 1.1.0
 
+### Minor Changes
+
+- be22c7d: Updated dependencies, added "type": "module" to package.json (the package will still export a .cjs file, however)
+
+## [1.0.2](https://github.com/DuCanhGH/react-tuby/compare/v1.0.1...v1.0.2) (2022-10-13)
 
 ### Bug Fixes
 
-* toggling subtitles shouldn't crash player anymore (sorry) ([fd42e29](https://github.com/DuCanhGH/react-tuby/commit/fd42e29a54ce9e0506717b009e496f97c73c78c2))
+- toggling subtitles shouldn't crash player anymore (sorry) ([fd42e29](https://github.com/DuCanhGH/react-tuby/commit/fd42e29a54ce9e0506717b009e496f97c73c78c2))
 
 ## [1.0.1](https://github.com/DuCanhGH/react-tuby/compare/v1.0.0...v1.0.1) (2022-10-13)
 
-
 ### Bug Fixes
 
-* changing subtitles should now work in Firefox ([57e1137](https://github.com/DuCanhGH/react-tuby/commit/57e1137ff817a2a05f43849ee55ddf80e40c852e))
+- changing subtitles should now work in Firefox ([57e1137](https://github.com/DuCanhGH/react-tuby/commit/57e1137ff817a2a05f43849ee55ddf80e40c852e))
 
 # 1.0.0 (2022-10-06)
 
